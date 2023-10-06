@@ -24,4 +24,11 @@
   * C) Ignoring processing and queuing delays, obtain an express for the end-to-end delay:
     *  dprop + 2dtrans = m/s + 2L/R
   * D) Suppose A begins to transmit the packet at time t = 0. At t = dtrans, where is the last bit of the packet?
-    * The last bit of the packet would still be on the link, the reason being that lets say if it takes 10 seconds for the transmission time, that means that it takes 10 seconds to get from A to link, so at 10 seconds, the packet is able to travel that entire distance to that link, therefore the last bit of the packet is <ins>just on the link</ins>, or little bit behind still transferring if we are according for propagation delay. 
+    * The last bit of the packet would still be on the link, the reason being that lets say if it takes 10 seconds for the transmission time, that means that it takes 10 seconds to get from A to link, so at 10 seconds, the packet is able to travel that entire distance to that link, therefore the last bit of the packet is <ins>just on the link</ins>, or little bit behind still transferring if we are according for propagation delay.
+   * E) Suppose dprop is greater than dtrans. At time t = dtrans, where is the first bit of the packet?\
+     * Still on the transfer way from A to router
+   * F) Suppose dprop is less than dtrans. At time t = dtrans, where is the first bit of the packet?
+     * if dprop is less than dtrans, than at t = dtrans, that means the first bit of the packet is already at B, because dprop is the time it takes to get from A to B
+   * G) Suppose s = 2.5*10^8, L = 120 bits, and R = 56kbps. Find the distance m so that dprop equals dtrans
+     * Since we want to find when dprop is equal to dtrans we have to set them equal to each other, and then solve for m so then we are able to find out what m is
+     * m = (L/R) * s = (120bits/56000bits per second) * 2.5*10^8m/s = <ins>535.71 km</ins>
