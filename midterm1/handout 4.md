@@ -16,3 +16,12 @@
   * 10s from router to B
   * total propagation delay of 20ms (10ms * 2links)
   * So it takes 10s + 10s + 2ms + 20ms = <ins>20.022 seconds</ins> 
+4) <b> Two hosts <ins>A</ins> and <ins>B</ins>, connected by link with rate <ins>R</ins>. Two hosts separated by <ins>m</ins> meters progagation speed along link is <ins>s</ins> meters/sec. Host A sends packet of size L bits to host B.</b>
+  * a) Express propagation delay, dprop, in terms of m and s: 
+    * Distance div by prop speed. Dprop is m/s
+  * b) Determine the transmission time of packet, dtrans, in terms of L and R:
+    * Trans time is packet size L div by trans rate R, L/R
+  * C) Ignoring processing and queuing delays, obtain an express for the end-to-end delay:
+    *  dprop + 2dtrans = m/s + 2L/R
+  * D) Suppose A begins to transmit the packet at time t = 0. At t = dtrans, where is the last bit of the packet?
+    * The last bit of the packet would still be on the link, the reason being that lets say if it takes 10 seconds for the transmission time, that means that it takes 10 seconds to get from A to link, so at 10 seconds, the packet is able to travel that entire distance to that link, therefore the last bit of the packet is <ins>just on the link</ins>, or little bit behind still transferring if we are according for propagation delay. 
