@@ -27,4 +27,5 @@
   * Per, little as 1 RTT for all the referenced objects, as multiple objects can be sent over a single connection
   * Non-per: 2 RTTs per object, for 10 images, would take 2 * (1 + 10) = 22 RTTs, each image needs a separate connection and need the first 2 RTT to establish connection and request and receive objects
 9) What are the two key advantages of web proxies?
-  *
+  * Reduce response time for client requests, proxy cache can return cached objects withouth involving the origin server.
+  * Reduce traffic on the institution's access link, no need to go to origin server.
