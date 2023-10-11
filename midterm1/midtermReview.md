@@ -1,7 +1,7 @@
 # Core Concepts
 
 * What basic service does the network provide to applications?  
-  * Infrastructure that supports web browsing, streaming video, email, games etc.
+  * Providing reliable and efficient communication service for apps running on different hosts in a network
 
 * What is network edge? Network core?  
   * Edge: Hosts or end systems running network apps  
@@ -15,18 +15,18 @@
   * Important because they ensure proper communication btw devices and control the sending and receiving of messages  
   * EX: HTTP, TCP, WiFi, they all have their own protocol to handle packets and how things get done
 
-* What is the difference between circuit switching and packet switching? What are advantages and disadvantages of each?  
-  * Cir: end-to-end resources allocated and reserved for call between source and destination. Guaranteed performance, inefficient  
-  * Pack: Data broken into packets and transmitted independently. More efficient, but can experience congestion, leading to packet delay and loss
+* What is the difference between circuit switching and packet switching? What are the advantages and disadvantages of each?  
+  * Cir: end-to-end resources allocated and reserved for calls between source and destination. Guaranteed performance, inefficient  
+  * Pack: Data broken into packets and transmitted independently. More efficient but can experience congestion, leading to packet delay and loss
 
-* What sort of applications are most likely to benefit from circuit/packet switching?  
+* What applications are most likely to benefit from circuit/packet switching?  
   * Cir: Audio and video apps  
-  * Pack: Apps with bursty data, instant messaging, IoT devices, they send small amounts of data now and then.
+  * Pack: Apps with bursty data, instant messaging, IoT devices, send small amounts of data occasionally.
 
 * Dif network models: p2p, client-server, hybrid  
-  * p2p: All devices act as both client and server, can request and provide resources to other devices. BitTorrent, Skype  
-  * Client-server: Dedicated server that provdie resources or services to clients. Ex: HTTP, FTP  
-  * Hybrid: Combines both p2p and client-server, some nodes act as servers, providing resources to other nodes, while also acting as clients, requesting resources from other nodes.  
+  * p2p: All devices act as both client and server can request and provide resources to other devices. BitTorrent, Skype  
+  * Client-server: Dedicated server that provides resources or services to clients. Ex: HTTP, FTP  
+  * Hybrid: Combines p2p and client-server; some nodes act as servers, providing resources to other nodes, while also acting as clients, requesting resources from other nodes.  
     * Ex: Content delivery network (CDN), dedicated servers and p2p connections to distribute content efficiently
 
 # Accessing the internet
@@ -40,13 +40,13 @@
   * Lower latency, speed of light travel time, compared to electrical signals
     * Dis:
       * High cost, have to replace the HFC infrastructure already in place, not available everywhere
-      * HFC can leverage existing coaxial cable infrastructure, so easier and more cost efficient
+      * HFC can leverage existing coaxial cable infrastructure, so more accessible and more cost-efficient
 
 * How are ISPS structured? Be able to compare and contrast different approaches and their practicality
   * Hierarchical manner
-    * Tier 1 ISPs: Large, well-connected networks with national or international coverage. Backbone of Internet, exchange traffic with other Tier 1s
+    * Tier 1 ISPs: Large, well-connected networks with national or international coverage. The backbone of Internet, the exchange of traffic with other Tier 1s
       * Example: AT&T, NTT
-    * Tier 2 ISPs: regional or national ISPs, connect to Tier 1 for access to global internet
+    * Tier 2 ISPs: regional or national ISPs connect to Tier 1 for access to global internet
     * Tier 3 ISPS: Local or access ISPs, provide internet to end-users, residential customers, businesses etc.
       * Connect to Tier 2 or 1 for broader internet
     * Content provider Networks: Networks operated by large content providers, Google, Facebook.
@@ -72,7 +72,7 @@
 
 * What are the differences between GEO and LEO satellites?
   * GEO(Geostationary Earth Orbit): positioned at altitude 22,236 miles above Earth's equator, orbit Earth same speed as rotation. So looks stationary. Used for communication, broadcasting, weather monitoring
-  * LEO(Low Earth orbit): 310 - 1240 miles. Moves quicker than earth, and provide coverage for small area.
+  * LEO(Low Earth orbWhat sequence of messagesit): 310 - 1240 miles. Moves quicker than earth, and provide coverage for small area.
     * Used for lower latency communications, Earth observations
 
 # Quantitative Analysis of Networks
@@ -88,6 +88,7 @@ switched networks (TDM & FDM)?
 
 * Be able to compute different kinds of delays (e.g. processing, transmission, propagation, queuing, and end-to-end delays)
   * For trans: L bits over R link rate, for given example: 10000/1000 = 10 seconds
+  * Other delays on Handout like 2?
 
 * Understand and be able to solve problems on how traffic intensity affects queuing delays
   * More traffic = more chance of packets waiting in the queue, leading to higher queuing delays
@@ -352,7 +353,7 @@ switched networks (TDM & FDM)?
     * Example: If it was a 2-way, client would ask if server ready, server says ready, but then client does not say if it knows if the server is ready,
       * Also if client never received SYN ACK by server it might send another SYN which the server might think that the clients wants another connection
 
-*  What sequence of messages are exchanged when setting up a connection? (slide 76 of Transport Layer)?
+* What sequence of messages are exchanged when setting up a connection? (slide 76 of Transport Layer)?
   *  Client sends SYN packet to server
   *  Server responds with SYN-ACK packet
   *  Client sends ACK packet to server 
