@@ -1,3 +1,18 @@
+# What needs to be looked over still:
+* What is the function/services of each layer?
+  * Specific functions and services, such as data transmission, routing, error detection, and flow control
+  * <ins>Get the list of what they do from one of the handouts</ins>
+
+* Given a reliability state machine, be able to answer questions. RDT and how that is processed
+  * LOOK AT EXAMPLE IN CHAP 3 AND UNDERSTAND
+  * E.g:
+    * Sender sends a packet that is lost, it will not receive an acknowledgment (ACK) from the receiver.
+    * After a timeout period, the sender will retransmit the packet
+
+* Look at how TCP handles lost segments
+  * How TCP does fast retransmit and be able to solve problems
+  * Look at TCP flow control as well.
+
 # Core Concepts
 
 * What basic service does the network provide to applications?  
