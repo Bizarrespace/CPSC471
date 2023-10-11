@@ -379,7 +379,7 @@ switched networks (TDM & FDM)?
 * Suppose a DNS resource record has Type=CNAME.
   * A) Value is the hostname of the DNS server that is authoritative for Name 
   * B) Value is the IP address of the host that has the alias hostname Name
-  * C) Value is the canonical name of the host that has the alias hostname Name
+  * C) <ins>Value is the canonical name of the host that has the alias hostname Name</ins> 
   * D) None of the above 
 
 * (6 points) Suppose you would like to urgently deliver 40 terabytes (1T = 1000G) data from Boston to Los Angeles. You have available a 100 Mbps dedicated link for data transfer. Would you prefer to transmit the data via this link or instead use FedEx overnight delivery? Explain.
