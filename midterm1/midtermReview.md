@@ -302,7 +302,7 @@ switched networks (TDM & FDM)?
 * Be able to calculate sequence and ACK numbers of protocols.
   * Client sequence # 2000, Server 4000. Client sends 300 byte segment to server. Assuming segment received successfully, what will be the sequence # and the acknowledgement in server's response?
     * Sequence # sent by client will be 2000
-    * Server receives segment successfully, sends acknowledgement w/ sequence # of 4000(its initial sequence #)
+    * Server receives segment successfully, sends acknowledgment w/ sequence # of 4000(its initial sequence #)
       * Sends acknowledgement # of 2301(client's sequence # plus size of received segment + 1)
 
 * Why must TCP estimate RTT? How does TCP estimate RTT. Example: What is EstimatedRTT? How is it computed?
@@ -316,4 +316,73 @@ switched networks (TDM & FDM)?
     * What ack will the server send when receiving these segments?
       * Handles lost segments by using acknowledgments and retransmissions.
       * If a segment is lost, the sender will not receive an acknowledgment for that segment.
-      * 
+      * How it would play out:
+        * Server 500, Client 800
+        * Client sends first seg of 400. Sequence # for this would be 800(initial) + 400(data size) = 1200
+        * Ser gets this and sends ack, which is going to be 1200 (800 - 1200)
+        * Client now sends second seg of 600, sequence # is going to be 1200 + 600 = 1800, but lets say this segment gets lost
+        * Sever waiting for the segment with sequence # of 1200
+        * Client now sends third seg of 900. Sequence # is 1800(previous sequence #) + 900(data size) = 2700 (1800 - 2700)
+        * Ser receives 1800 - 2700 and gets confused because it never got the buffer for 1201 - 1800
+        * Sends duplicate ack for last segment recieved in order, which ended at 1200. Telling it was good up till 1200
+        * Client gets dup ack so it resends second segment with sequence 1800(1200 + 600).
+        * Ser sends ack for 1800, so client knows second segment received, doesnt need to send third because server got it
+          * Client knows because server send ack for 1800 + 900 = 2700 (1800 - 2700)
+        * Communication continues with enxt sequence # after third segment of 2700
+        
+* Understand the concepts behind fast retransmit, and be able to solve problems.
+  * Ex: Sender sends 6 packets of size 100. The initial Sequence # of the sender is 300. Suppose packet 3 is lost. All other packets and ACKs arrive successfully. What ACK # will the sender receive? When will the sender perform a fast retransmit?
+    * The ACK that the sender receives is going to be
+      * ACK 400, successful receipt of packet 1
+      * ACK 500, succ receipt of packet 2
+        * Server then receives packet 4, and see that there is a gap in the sequence numbers
+        * So it sends ACK 500 again for that packet 4, does the same with packet 5, and 6 because the gap is still there
+      * When the sender receives 3 Dup ACK of 500, it then performs a fast retransmit of packet 3
+
+* Be able to solve problems related to flow control
+  * Example: The receiver has a buffer size of 10 KB. The buffer already contains 5 KB of data. What (rwnd) window size will the sender advertise?
+  * Flow control used to prevent sender from overwhelming a receiver by sending too much data too fast.
+  * Receiver advertises a window size(rwdn) to sender, showing how much data it can accept.
+    * In the example, if buffer size is 10 KB, and already has 5KB of data, window size of 5KB will be advertise
+      * This shows that only 5 more KB is able to be accepted
+
+* Why does TCP use a 3-way connection rather than 2-way (slide 78 of Transport Layer)?
+  * Uses 3-way so that both parties is able to ensure that the other is ready, also allows them to agree on initial sequence numbers.
+  * Help prevent data lost and duplication
+    * Example: If it was a 2-way, client would ask if server ready, server says ready, but then client does not say if it knows if the server is ready,
+      * Also if client never received SYN ACK by server it might send another SYN which the server might think that the clients wants another connection
+
+*  What sequence of messages are exchanged when setting up a connection? (slide 76 of Transport Layer)?
+  *  Client sends SYN packet to server
+  *  Server responds with SYN-ACK packet
+  *  Client sends ACK packet to server 
+
+* What sequence of messages do server and client exchange when closing the connection? (slide 82 of Transport Layer).
+  * Client sends FIN packet to server
+  * Server responds with ACK packet, and then sends its own FIN packet
+  * Client responds with ACK packet
+
+* What is the difference between Go-Back-N and Selective-Repeat? Be able to solve problems such as:
+  * Example: Suppose the sender sends 5 packets with sequence numbers 1-5, respectively. Packet 3 gets lost. What ACKs will the receiver send (assuming all packets arrive successfully) when using Go-Back-N and Selective-Repeat. What packets will be resent and when?
+  * Go-Back-N retransmits all packets from lost packet to the last transmitted packet
+  * Selective Repeat only retransmits the lost packet.
+  * Selective more efficient in terms of bandwidth usage, but requires more memory and processing power than Go-Back-N
+    * Example:
+      * ACKs that the receiver sends when using Go-Back-N would be:
+        * ACKs for packets 1 and 2, when 4 arrives, receiver send ACK for packet 2 again, showing that it expected 3
+        * Sender once it gets the dup will retransmit packets 3, 4, 5
+      * ACKs that the receiver sends when using Selective Repeat Protocol:
+        * Receiver sends ACKs for packets 1,2,4,5
+        * Sender when not getting ACK for 3 within a certain timeout period, will retransmit only packet 3
+
+# Sample Questions
+* Suppose a DNS resource record has Type=CNAME.
+  * A) Value is the hostname of the DNS server that is authoritative for Name 
+  * B) Value is the IP address of the host that has the alias hostname Name
+  * C) Value is the canonical name of the host that has the alias hostname Name
+  * D) None of the above 
+
+* (6 points) Suppose you would like to urgently deliver 40 terabytes (1T = 1000G) data from Boston to Los Angeles. You have available a 100 Mbps dedicated link for data transfer. Would you prefer to transmit the data via this link or instead use FedEx overnight delivery? Explain.
+  * 40 Terabytes = 40000 GB = (40000GB * 1000 MB/GB) = 40,000,000 MB / (100Mbps/  1MBps/8Mbps) 12.5MBps = 3200000 seconds / 60 seconds = 53333.3333 mintues / 60(1hr/mins) = 888.88889 hours
+  * If overnight is 24 hours, FedEx overnight much better than 888 hours
+
