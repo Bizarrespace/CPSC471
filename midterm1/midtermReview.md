@@ -307,3 +307,13 @@ switched networks (TDM & FDM)?
 
 * Why must TCP estimate RTT? How does TCP estimate RTT. Example: What is EstimatedRTT? How is it computed?
   * Must estimate Round-Trip Time (RTT) to set the timeout period for acknowledgments.
+  * If ack is not received within the estimated RTT, the packet is assumed to be lost and retransmitted.
+  * TCP estimates RTT by taking a weighted avg of measured RTT for each segment and previous estimated RTT
+
+* How does TCP handle lost segments?
+  * Ex: TCP and client choose sequence # 500 and 800. Clients send 3 back-to-back segments. The size of the segments is 400, 600, 900.
+    * Suppose the second segment gets lost, but the first and third segments arrive successfully.
+    * What ack will the server send when receiving these segments?
+      * Handles lost segments by using acknowledgments and retransmissions.
+      * If a segment is lost, the sender will not receive an acknowledgment for that segment.
+      * 
