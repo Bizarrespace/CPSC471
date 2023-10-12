@@ -38,3 +38,25 @@
 * Third party cookies
   * Are explicitly mentioned in new privacy laws such at the EU General Data Protection Regulation (GDPR).
   * Provide a mechanism for a website to track a browser's accesses to multiple other websites.
+ 
+* The following characteristics apply to HTTP only:
+  * Server port 80
+  * Uses blank line(CRLF) to indicate end of request header
+  * Operates mostly as a client pull protocol
+ 
+* Characteristics of SMTP only:
+  * Uses CRLF.CRLF to indicate end of message
+  * Server port 25
+  * Operates mostly as a client push protocol
+ 
+* Characteristics of both HTTP and SMTP:
+  * Persistent TCP connection to transfer multiple objects
+  * ASCII command/response interaction
+  * Status codes
+
+* which e-mail protocol?
+  * Pushes email from a mail client to mail server: SMTP
+  * Pulls email to a mail client from a mail server: IMAP
+  * Pulls mail from one mail server to another mail server: Neither SMTP nor IMAP
+ 
+ # Stop at Q 26
