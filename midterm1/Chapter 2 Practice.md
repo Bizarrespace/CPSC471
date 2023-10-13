@@ -59,4 +59,108 @@
   * Pulls email to a mail client from a mail server: IMAP
   * Pulls mail from one mail server to another mail server: Neither SMTP nor IMAP
  
- # Stop at Q 26
+* Function of DNS server in DNS hierarchy:
+  * Authoritative:
+    * Provides authoritative hostname to IP mappings for org's named hosts
+  * Local:
+    * Replies to DNS query by local host by contacting other DNS servers to answer the query.
+  * Top Level Domain (TLD):
+    * Responsible for a domain (e.g., *.com, *.edu); knows how to contact authoritative name servers.
+  * DNS root server:
+    * Highest level of the DNS hierarchy, knows how to reach servers responsible for a given domain (e.g., *.com, *.edu).
+   
+* True property of local DNS server:
+  * Decrease Name-to-IP address resolution time when compared to querying into the DNS hierarchy
+    * Because you just get it from the local DNS server, rather than having to ask around
+  * Local DNS server record for remote host is sometimes dif from that of authoritative server for that host
+    * Reason is that Local is just caching now and then, not always the most up to date data
+   
+*  The role of an authoritative name server in the DNS
+  *  Provides definitive answer to the query with respect to a name in the auth name server's domain
+
+*  Which forms of caching does user benefit from its own requests and the recent requests of others
+  *  HTTP Local web caching and Local DNS server caching
+    * Reason is that both do caching for a group of people, rather than just one person
+    * HTTP browser caching is only for that person, not a group of others
+
+* Streaming video definitions
+  * Chunk:
+    * Unit of vid, encoded at multiple dif rates, stored in dif files
+  * Manifest:
+    * File containing the location and encoding rate of files corresponding to video segments in a video
+  * DASH:
+    * Approach that allows a client to adapt the encoding rate of retrieved video to network congestion conditions
+  * Enter deep:
+    * CDN approach that stores content in access networks, close to clients
+
+* What is DASH?
+  * Dynamic, Adaptive streaming over HTTP
+  * vid files into chunks that are encoded at different rates(vid quality)
+  * Client plays chunk by chunk, each chunk requested at encoding rate that fits available bandwidth
+ 
+* Characteristics of UDP socket
+  * Data from different clients can be received on the same socket
+  * socket(AF_INET, SOCK_DGRAM) creates this type of socket
+  * The application must explicitly specify the IP destination address and port number for each group of bytes written into a socket
+  * Provides unreliable transfer of a groups of bytes (“a datagram”), from client to server 
+
+* Characteristics of TCP socket:
+  * When contacted, the server will create a new server-side socket to communicate with that client
+  * Socket(AF_INET, SOCK_STREAM) creates this type of socket
+  * Provides reliable, in-order byte-stream transfer (a “pipe”), from client to server
+  * A server can perform an accept() on this type of socket
+
+* Suppose web server with 5 ongoing connections using TCP port 80, assume no other TCP connections. How many TCP sockets are in use at this server?
+  * Going to be 6, reason is that we have 5 from the ongoing connections, and then 1 listening socket for any new TCP connections on port 80
+ 
+* What happens when socket connect() is called?
+  * Creates new socket at the client, and connects that socket to specified server
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
