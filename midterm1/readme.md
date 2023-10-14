@@ -1,5 +1,5 @@
 # Plan of attack
-* Do all quizzes~~
+* ~~Do all quizzes~~
 * After done with the questions and you understand well
   * Add the quiz questions into cheatsheet, ones that are hard to remember/difficult to understand 
   * Skim the slides, and add stuff that are important onto the cheat sheet, that were not covered by the quizzes
